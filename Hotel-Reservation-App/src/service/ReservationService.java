@@ -7,15 +7,15 @@ import java.util.Date;
 import java.util.HashSet;
 
 public class ReservationService {
-    private Collection<IRoom> rooms = new HashSet<>();
-    private Collection<Reservation> reservations = new HashSet<>();
+    private static final Collection<IRoom> rooms = new HashSet<>();
+    private static final Collection<Reservation> reservations = new HashSet<>();
 
-    public void addRoom(String roomNumber, double price, RoomType roomType) {
+    public static void addRoom(String roomNumber, double price, RoomType roomType) {
         Room room = new Room(roomNumber, price, roomType);
         rooms.add(room);
     }
 
-    public IRoom getARoom(String roomNumber) {
+    public static IRoom getARoom(String roomNumber) {
         for (IRoom room : rooms) {
             if (roomNumber.equals(room.getRoomNumber())) {
                 return room;
@@ -24,14 +24,14 @@ public class ReservationService {
         return null;
     }
 
-    public Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
+    public static Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
         Reservation reservation = new Reservation(customer, room, checkInDate, checkOutDate);
         reservations.add(reservation);
         return reservation;
     }
-    public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
+    public static Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
         boolean found = false;
-        Collection<IRoom> findAvailableRooms = new HashSet<>();
+        Collection<IRoom> availableRooms = new HashSet<>();
         for(IRoom room : rooms){
             for(Reservation reservation: reservations){
                 if((room.getRoomNumber() == reservation.getRoom().getRoomNumber()
@@ -40,19 +40,20 @@ public class ReservationService {
                         (!checkOutDate.after(reservation.getCheckInDate()) &&
                                 !checkInDate.before(reservation.getCheckOutDate())))) ||
                         (!reservation.getRoom().getRoomNumber().contains(room.getRoomNumber()))) {
-                    findAvailableRooms.add(room);}
+                    availableRooms.add(room);
+                }
             }
 
 
 
         }
-        System.out.println(findAvailableRooms);
-        return findAvailableRooms;
+        System.out.println(availableRooms);
+        return availableRooms;
     }
 
 
 
-    public Collection<Reservation> getCustomersReservation(Customer customer){
+    public static Collection<Reservation> getCustomersReservation(Customer customer){
         Collection<Reservation> customersReservations = new HashSet<>();
         for(Reservation reservation : reservations){
             if(reservation.getCustomer().equals(customer)){
@@ -62,8 +63,8 @@ public class ReservationService {
         return customersReservations;
     }
 
-    public Collection<Reservation> printAllReservations(){
-        return reservations;
+    public static void printAllReservations(){
+        System.out.println(reservations);
     }
 
 }
