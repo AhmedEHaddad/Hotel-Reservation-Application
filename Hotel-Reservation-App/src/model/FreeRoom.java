@@ -10,4 +10,5 @@ public class FreeRoom extends Room{
     public String toString() {
         return super.toString();
     }
+
 }

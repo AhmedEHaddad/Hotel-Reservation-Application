@@ -7,7 +7,7 @@ public class Customer {
 
 
     public Customer(String firstName, String lastName, String email) {
-        //add regex email validation
+        //add regex email validation later
 
         this.firstName = firstName;
         this.lastName = lastName;
