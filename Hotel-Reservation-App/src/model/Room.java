@@ -2,10 +2,10 @@ package model;
 
 public class Room implements IRoom{
     private String roomNumber;
-    private Double price;
+    private double price;
     private RoomType roomType;
 
-    public Room(String roomNumber, Double price, RoomType roomType) {
+    public Room(String roomNumber, double price, RoomType roomType) {
         this.roomNumber = roomNumber;
         this.price = price;
         this.roomType = roomType;
@@ -32,7 +32,7 @@ public class Room implements IRoom{
         this.roomNumber = roomNumber;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

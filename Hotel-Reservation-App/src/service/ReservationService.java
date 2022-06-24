@@ -67,4 +67,11 @@ public class ReservationService {
         System.out.println(reservations);
     }
 
+    public static Collection<IRoom> getAllRooms() {
+        return rooms;
+    }
+    public static Collection<Reservation> getAllReservations() {
+        return reservations;
+    }
+
 }
