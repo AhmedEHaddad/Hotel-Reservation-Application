@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import static java.lang.System.exit;
 
-public class Main {
+public class MainMenu {
     /*public static void printMenu(String[] options){
         for (String option : options){
             System.out.println(option);
@@ -12,7 +12,8 @@ public class Main {
         System.out.print("Choose your option : ");
     }*/
 
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
+    public static void mainMenu() {
         String[] options = {"1-- find and reserve a room.",
                 "2-- see my reservations.",
                 "3-- create an account.",
@@ -42,7 +43,7 @@ public class Main {
                         option3();
                         break;
                     case 4:
-                        System.out.println("You Selected to make a new Reservation");
+                        System.out.println("You Selected to view admin Menu");
                         option4();
                         break;
                     case 5:
@@ -66,10 +67,12 @@ public class Main {
     }
     //helper functions
     public static void printMenu(String[] options){
+        System.out.println("---------------------------");
         for (String option : options){
             System.out.println(option);
         }
-        System.out.print("Choose your option : ");
+        System.out.println("Choose your option : ");
+        System.out.println("---------------------------");
     }
     //adminMenu
 
@@ -85,5 +88,7 @@ public class Main {
     }
     private static void option4() {
         System.out.println("Thanks for choosing option 4");
+        AdminMenu.adminMenu();
     }
+
 }
