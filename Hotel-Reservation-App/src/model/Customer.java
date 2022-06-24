@@ -1,13 +1,19 @@
 package model;
 
+import java.util.regex.Pattern;
+
 public class Customer {
     private String firstName;
     private String lastName;
     private String email;
-
+    private final String emailRegex = "^(.+)@(.+).(.+)$";
+    private final Pattern pattern = Pattern.compile(emailRegex);
 
     public Customer(String firstName, String lastName, String email) {
         //add regex email validation later
+        if(!pattern.matcher(email).matches()){
+            throw new IllegalArgumentException("Error, Invalid Email");
+        }
 
         this.firstName = firstName;
         this.lastName = lastName;
