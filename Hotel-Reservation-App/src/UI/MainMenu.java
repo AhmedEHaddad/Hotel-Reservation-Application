@@ -35,11 +35,11 @@ public class MainMenu {
                         option1();
                         break;
                     case 2:
-                        System.out.println("You Selected to make a new Reservation");
+                        System.out.println("You Selected see my reservations");
                         option2();
                         break;
                     case 3:
-                        System.out.println("You Selected to make a new Reservation");
+                        System.out.println("You Selected create a new account");
                         option3();
                         break;
                     case 4:

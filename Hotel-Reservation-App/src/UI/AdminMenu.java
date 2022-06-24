@@ -1,5 +1,9 @@
 package UI;
 
+import model.*;
+import resourcesAPI.*;
+
+import java.util.Collection;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -72,15 +76,51 @@ public class AdminMenu {
     // Options
     private static void option1() {
         System.out.println("Thanks for choosing option 1");
+        Collection<Customer> allCustomers =AdminResource.getAllCustomer();
+        for (Customer customer: allCustomers){
+            System.out.println(customer.toString());
+        }
+
     }
     private static void option2() {
         System.out.println("Thanks for choosing option 2");
+        Collection<IRoom> allRooms =AdminResource.getAllRooms();
+        for (IRoom room: allRooms){
+            System.out.println(room.toString());
+        }
     }
     private static void option3() {
         System.out.println("Thanks for choosing option 3");
+        Collection<Reservation> allReservations =AdminResource.getAllReservations();
+        for (Reservation reservation: allReservations){
+            System.out.println(reservation.toString());
+        }
     }
     private static void option4() {
         System.out.println("Thanks for choosing option 4");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please Enter the Number of the Room you wish to Add:");
+        String roomID = scanner.next();
+        System.out.println("Enter the Room Type single/double of the Room");
+        /*RoomType roomType;
+        try {
+            String roomTypeInput = scanner.next();
+            if (roomTypeInput.equals("single")){
+                roomType = RoomType.SINGLE;
+            } else if (roomTypeInput.equals("double")) {
+                roomType = RoomType.DOUBLE;
+            }else {
+                System.out.println("Please Enter pne of the defined values single/double:");
+
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }*/
+        RoomType roomType = RoomType.valueOf(scanner.next());
+        System.out.println("Enter the Room Price per Night");
+        double roomPrice = scanner.nextDouble();
+
+        AdminResource.createRooms(roomID, roomPrice, roomType);
     }
 
 }
