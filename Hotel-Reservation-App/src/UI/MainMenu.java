@@ -4,12 +4,17 @@ import model.Reservation;
 import resourcesAPI.HotelResource;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import static java.lang.System.exit;
 
 public class MainMenu {
+    //date format
+    private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
     /*public static void printMenu(String[] options){
         for (String option : options){
             System.out.println(option);
@@ -82,7 +87,7 @@ public class MainMenu {
     //adminMenu
 
     // Options
-    private static void option1() {
+    private static void option1() throws ParseException {
         //make a reservation
         System.out.println("Thanks for choosing option 1");
         System.out.println("please enter your email");
@@ -93,12 +98,16 @@ public class MainMenu {
             System.out.print("No account exists for this email!\n"  + "please register first\n");
             return;
         }
-        System.out.println("please enter your checkIn date");
-        //Date checkIn = scanner.next();
-        System.out.println("please enter your check Out date");
+        System.out.println("please enter your checkIn date in the following format DD/MM/YY");
+        String checkIn = scanner.next();
+        //String sDate1="31/12/1998";
+        Date checkInDate =new SimpleDateFormat("dd/MM/yyyy").parse(checkIn);
+        System.out.println("please enter your check Out date in the foramt of DD/MM/YY");
+        String checkOut = scanner.next();
+        Date checkInOut =dateFormatter.parse(checkOut);
         System.out.println("please enter the room number you would like to make a reservation for");
         String roomNo = scanner.next();
-        //HotelResource.bookARoom(email, HotelResource.getRoom(roomNo),);
+        HotelResource.bookARoom(email, HotelResource.getRoom(roomNo),checkInDate,checkInOut);
 
 
     }
@@ -108,7 +117,14 @@ public class MainMenu {
         System.out.println("please enter your email");
         Scanner scanner = new Scanner(System.in);
         String email = scanner.next();
-        for (Reservation r :HotelResource.getCustomersReservation(email)) {
+        Collection<Reservation> reservations = HotelResource.getCustomersReservation(email);
+        //if (reservations.isEmpty() || reservations == null){
+        //if (reservations.isEmpty() || HotelResource.getCustomersReservation(email) == null){
+        if (reservations.isEmpty()){
+            System.out.println("Customer has no reservations at the moment");
+            return;
+        }
+        for (Reservation r :reservations) {
             System.out.println(r.toString());
         }
     }
