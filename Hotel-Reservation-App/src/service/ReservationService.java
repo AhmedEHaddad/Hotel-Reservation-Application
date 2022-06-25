@@ -71,7 +71,11 @@ public class ReservationService {
         return rooms;
     }
     public static Collection<Reservation> getAllReservations() {
-        return reservations;
+        //if (reservations != null) {
+            return reservations;
+       // } else {
+        //    System.out.println("there are  no reservations currently!");
+       // }
     }
 
 }

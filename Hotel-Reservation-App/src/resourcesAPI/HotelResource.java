@@ -22,6 +22,12 @@ public class HotelResource {
         return ReservationService.reserveARoom(customer, room, checkInDate, checkOutDate);
     }
     public static Collection<Reservation> getCustomersReservation(String customerEmail){
+        /*
+        Collection<Reservation> reservations = ReservationService.getCustomersReservation(CustomerService.getCustomer(customerEmail))
+        if(reservations == null){
+            System.out.println("Customer has no reservations at the moment");
+        }
+        */
         return ReservationService.getCustomersReservation(CustomerService.getCustomer(customerEmail));
     }
     public static Collection<IRoom> findARoom(Date checkInDate, Date checkOutDate){

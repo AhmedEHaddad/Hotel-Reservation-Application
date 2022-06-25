@@ -105,7 +105,7 @@ public class AdminMenu {
         /*RoomType roomType;
         try {
             String roomTypeInput = scanner.next();
-            if (roomTypeInput.equals("single")){
+            if (roomTypeInput.equalsIgnoreCase("SINGLE")){
                 roomType = RoomType.SINGLE;
             } else if (roomTypeInput.equals("double")) {
                 roomType = RoomType.DOUBLE;
@@ -114,7 +114,8 @@ public class AdminMenu {
 
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
+            System.out.println("Invalid input! Please Enter one of the defined values single/double:");
         }*/
         RoomType roomType = RoomType.valueOf(scanner.next());
         System.out.println("Enter the Room Price per Night");
